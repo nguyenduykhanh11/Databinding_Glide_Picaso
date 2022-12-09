@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.databinding.model.User" />
+
+        <variable
+            name="presenter"
+            type="com.example.databinding.Presenter" />
+
+        <variable
+            name="userObservable"
+            type="com.example.databinding.UserObservable" />
+
+        <variable
+            name="userViewModel"
+            type="com.example.databinding.UserViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="@string/demo_variable_onclic"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.name}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.address}"
+                android:textColor="@color/black" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> presenter.onClickInput(user)}"
+                android:text="@string/test_oclick"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_observable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/purple_700"
+            app:layout_constraintTop_toBottomOf="@+id/layout_header">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="@string/demo_observable"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_age_observable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:text="@={userObservable.nameChange}"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rememberMeCheckBox"
+                android:checked="@={userObservable.change}"
+                android:onCheckedChanged="@{()->userObservable.onClickObservable()}"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_view_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/purple_200"
+            app:layout_constraintTop_toBottomOf="@+id/layout_observable">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="@string/demo_view_model"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/tv_name_view_model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:hint="@string/name"
+                android:text="@={userViewModel.inputName}"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/tv_age_view_model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:text="@={userViewModel.inputAddress}"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:onClick="@{()-> userViewModel.addData()}"
+                    android:text="@string/add_data"
+                    android:textAllCaps="false" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:onClick="@{()-> userViewModel.clearData()}"
+                    android:text="@string/delete_all"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_view_model"
+            app:layout_constraintBottom_toTopOf="@+id/btn_to_custom"
+            android:layout_height="0dp"/>
+
+        <Button
+            android:id="@+id/btn_to_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_custom_data_binding"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:onClick="@{()->userObservable.onClickToCustomActivity()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
