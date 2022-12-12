@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "DataBinding"
+rootProject.name = "Retrofit_OkHttp3_RxJava"
 include ':app'

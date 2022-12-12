@@ -1,4 +1,4 @@
-package com.example.databinding
+package com.example.retrofit_okhttp3_rxjava
 
 import org.junit.Test
 
