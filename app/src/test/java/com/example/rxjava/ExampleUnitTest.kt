@@ -1,4 +1,4 @@
-package com.example.retrofit_okhttp3_rxjava
+package com.example.rxjava
 
 import org.junit.Test
 

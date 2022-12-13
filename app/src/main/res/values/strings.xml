@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">Retrofit_OkHttp3_RxJava</string>
-    <string name="get_data">Get Data</string>
+    <string name="app_name">RxJava</string>
+    <string name="map">Map</string>
+    <string name="flatmap">FlatMap</string>
+    <string name="concatmap">ConcatMap</string>
+    <string name="zip">Zip</string>
+    <string name="marge">Merge</string>
+    <string name="merge_filter_x_2">merge + filter(x%2)</string>
 </resources>
